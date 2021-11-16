@@ -12,7 +12,6 @@ const API_REQUEST_ERROR = 'API_REQUEST_ERROR';
 
 export const searchNasa =
   (searchParam: string) => async (dispatch: Dispatch) => {
-    console.log('hey', searchParam);
     try {
       dispatch({ type: API_REQUEST_PROCESS });
       const {

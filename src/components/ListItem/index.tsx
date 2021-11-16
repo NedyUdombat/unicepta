@@ -14,7 +14,6 @@ const ListItem = ({ item }: ListItemProps) => {
   const [isModalOpen, setIsOpenModal] = useState<boolean>(false);
 
   const { data, links } = item;
-  console.log('links[0].href-----------------', links);
   return (
     <>
       <Modal isOpen={isModalOpen} closeModal={() => setIsOpenModal(false)}>

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 /** Component(s) */
 import SearchInput from '../../components/input/SearchInput';
+import Loader from '../../components/Loader';
 import SearchResults from '../../components/SearchResults';
 
 import { searchNasa } from '../../store/modules/nasa';
@@ -10,9 +11,9 @@ import { searchNasa } from '../../store/modules/nasa';
 /** Type(s) */
 import { RootState } from '../../store/rootReducer';
 
-const Index = () => {
+const Index = (): JSX.Element => {
   const data = useSelector((state: RootState) => state.nasa.data);
-  const [searchParam, setsearchParam] = useState('neptune');
+  const [searchParam, setsearchParam] = useState('earth');
   const dispatch = useDispatch();
 
   const searchImages = useCallback(
@@ -32,18 +33,21 @@ const Index = () => {
     <section className="base-page">
       <section className="search-section">
         <SearchInput
-          onInputChange={(e) => {
-            console.log('e.target.value', e.target.value);
-            setsearchParam(e.target.value);
-          }}
+          onInputChange={(e) => setsearchParam(e.target.value)}
           inputClassName="searchbar"
           placeholder="Search..."
           value={searchParam}
+          id="searchParam"
+          name="searchParam"
         />
       </section>
-      <section className="result-section">
-        <SearchResults results={data} />
-      </section>
+      {data.length === 0 ? (
+        <Loader />
+      ) : (
+        <section className="result-section">
+          <SearchResults results={data} />
+        </section>
+      )}
     </section>
   );
 };
