@@ -36,7 +36,7 @@ const Modal = ({
       <div className="modal-content">
         <div className="close-btn-section">
           <button type="button" className="close-btn" onClick={closeModal}>
-            <i className="fas fa-close" />
+            <i className="fas fa-times fa-2x mb-4" />
           </button>
         </div>
         {children && children}
